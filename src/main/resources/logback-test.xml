@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%white(%d{HH:mm:ss}) %highlight(%-5level) [%blue(%t)] %yellow(%c{0}:%L): %msg%n%throwable</pattern>
+        </encoder>
+    </appender>
+
+    <!-- LOG everything at INFO level -->
+    <root level="info">
+        <appender-ref ref="Console"/>
+    </root>
+
+    <logger name="io.qameta.allure.AllureLifecycle" level="OFF"/>
+    <logger name="org.asynchttpclient.netty.handler" level="OFF"/>
+
+</configuration>
