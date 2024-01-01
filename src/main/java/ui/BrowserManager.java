@@ -1,8 +1,9 @@
-package config;
+package ui;
 
 import com.codeborne.selenide.*;
 import com.codeborne.selenide.commands.Commands;
 import io.qameta.allure.Step;
+import org.aeonbits.owner.Config;
 import org.openqa.selenium.JavascriptExecutor;
 import ui.commands.*;
 import ui.commands.button.*;
@@ -16,6 +17,7 @@ public class BrowserManager {
     private static final long PAGE_LOAD_TIMEOUT_MILLIS = 6000;
     private static final String CHROME = Browsers.CHROME;
     private static final String DOWNLOAD_FOLDER = "target/downloads";
+    private static final String BASE_URL = config.Configuration.getMainConfig().getBaseUiUrl();
 
     static {
         setUpCommands();
@@ -63,7 +65,7 @@ public class BrowserManager {
     }
 
     private static void configSelenide(long timeout) {
-        Configuration.baseUrl = "https://github.com/";
+        Configuration.baseUrl = BASE_URL;
         Configuration.timeout = timeout;
         Configuration.pageLoadTimeout = PAGE_LOAD_TIMEOUT_MILLIS;
         Configuration.browser = CHROME;
