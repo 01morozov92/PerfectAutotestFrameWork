@@ -16,7 +16,7 @@ public class RepositoriesTests {
     private final Map<String, String> repositoriesForDelete = new HashMap<>();
     private final RepositoryClient repositoryClient = new RepositoryClient();
 
-    @Test(description = "У пользователя есть репозиторий")
+    @Test(description = "Успешное создание репозитория через ручку /repos")
     public void getRepositoriesTest() {
         var userRepositoryClient = new UserRepositoryClient();
         var userName = "usefulrepository";
