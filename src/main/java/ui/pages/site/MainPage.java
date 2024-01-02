@@ -2,11 +2,10 @@ package ui.pages.site;
 
 import com.codeborne.selenide.As;
 import com.codeborne.selenide.Selenide;
-import config.BrowserManager;
+import ui.BrowserManager;
 import io.qameta.allure.Step;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.openqa.selenium.support.FindBy;
 import ui.pages.factory.CustomLocator;
 import ui.selectors.CustomSelenideElement;
 
@@ -29,7 +28,7 @@ public class MainPage {
 
     @Step("Переход к странице авторизации")
     public SignInPage goToSignInPage() {
-        signInElement._click();
+        signInElement.clickButton();
         return SignInPage.init();
     }
 }

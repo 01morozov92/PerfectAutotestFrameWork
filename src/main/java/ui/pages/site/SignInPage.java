@@ -2,7 +2,7 @@ package ui.pages.site;
 
 import com.codeborne.selenide.As;
 import com.codeborne.selenide.Selenide;
-import config.BrowserManager;
+import ui.BrowserManager;
 import io.qameta.allure.Step;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -32,8 +32,8 @@ public class SignInPage {
 
     @Step("Авторизация")
     public DashboardPage signIn(String login, String password) {
-        loginField._fillField(login);
-        passwordField._fillField(password).submit();
+        loginField.fillField(login);
+        passwordField.fillField(password).submit();
         return DashboardPage.init();
     }
 }
