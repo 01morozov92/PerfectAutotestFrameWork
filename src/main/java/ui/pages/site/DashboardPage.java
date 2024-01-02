@@ -22,13 +22,7 @@ public class DashboardPage {
 
     @Step("[Проверка] Тайтл на странице Dashboard содержит слово Dashboard")
     public DashboardPage checkDashboardTitle(){
-        title._checkElementMatchText("^.*Dashboard.*$");
+        title.checkElementMatchText("^.*Dashboard.*$");
         return this;
-    }
-
-    @Step("[Проверка] Тайтл на странице Dashboard содержит слово Dashboard")
-    public SearchSuggestionsBlock openSearch(){
-        searchInput._clickField();
-        return SearchSuggestionsBlock.init();
     }
 }

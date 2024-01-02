@@ -1,4 +1,4 @@
-package ui.commands.field;
+package ui.commands.element;
 
 import com.codeborne.selenide.Command;
 import com.codeborne.selenide.SelenideElement;
@@ -8,15 +8,17 @@ import ui.selectors.CustomSelenideElement;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import static ui.pages.common.CommonPageHelper.getElementAliasName;
 
-public class _CheckFieldDisabled implements Command<CustomSelenideElement> {
+@ParametersAreNonnullByDefault
+public class CheckElementAppear implements Command<CustomSelenideElement> {
 
     @Override
     @Nonnull
     public CustomSelenideElement execute(SelenideElement proxy, WebElementSource locator, @Nullable Object[] args) {
-        CommonPageHelper.checkFieldDisabled(proxy, getElementAliasName(proxy));
+        CommonPageHelper.checkElementAppear(proxy, getElementAliasName(proxy));
         return (CustomSelenideElement) proxy;
     }
 }

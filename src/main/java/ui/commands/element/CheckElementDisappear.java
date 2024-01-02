@@ -1,4 +1,4 @@
-package ui.commands.button;
+package ui.commands.element;
 
 import com.codeborne.selenide.Command;
 import com.codeborne.selenide.SelenideElement;
@@ -13,12 +13,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import static ui.pages.common.CommonPageHelper.getElementAliasName;
 
 @ParametersAreNonnullByDefault
-public class _CheckButtonAppear implements Command<CustomSelenideElement> {
+public class CheckElementDisappear implements Command<CustomSelenideElement> {
 
     @Override
     @Nonnull
     public CustomSelenideElement execute(SelenideElement proxy, WebElementSource locator, @Nullable Object[] args) {
-        CommonPageHelper.checkButtonAppear(proxy, getElementAliasName(proxy));
+        CommonPageHelper.checkElementDisappear(proxy, getElementAliasName(proxy));
         return (CustomSelenideElement) proxy;
     }
 }

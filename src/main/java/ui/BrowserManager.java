@@ -3,60 +3,36 @@ package ui;
 import com.codeborne.selenide.*;
 import com.codeborne.selenide.commands.Commands;
 import io.qameta.allure.Step;
-import org.aeonbits.owner.Config;
 import org.openqa.selenium.JavascriptExecutor;
-import ui.commands.*;
-import ui.commands.button.*;
-import ui.commands.checkbox._GetCheckBoxValue;
+import ui.commands.SetAlias;
+import ui.commands.button.ClickButton;
 import ui.commands.element.*;
-import ui.commands.field.*;
+import ui.commands.field.ClickField;
+import ui.commands.field.FillField;
 
 public class BrowserManager {
 
-    private static final long ELEMENTS_TIMEOUT_MILLIS = 5000;
-    private static final long PAGE_LOAD_TIMEOUT_MILLIS = 6000;
+    private static final long ELEMENTSTIMEOUTMILLIS = 5000;
+    private static final long PAGELOADTIMEOUTMILLIS = 6000;
     private static final String CHROME = Browsers.CHROME;
-    private static final String DOWNLOAD_FOLDER = "target/downloads";
-    private static final String BASE_URL = config.Configuration.getMainConfig().getBaseUiUrl();
+    private static final String DOWNLOADFOLDER = "target/downloads";
 
     static {
         setUpCommands();
-        configSelenide(ELEMENTS_TIMEOUT_MILLIS);
+        configSelenide(ELEMENTSTIMEOUTMILLIS);
     }
 
     private static void setUpCommands() {
-        Commands.getInstance().add("_click", new _ClickElement());
-        Commands.getInstance().add("_setAlias", new _SetAlias());
-        Commands.getInstance().add("_checkElementAppear", new _CheckElementAppear());
-        Commands.getInstance().add("_fillField", new _FillField());
-        Commands.getInstance().add("_getElementText", new _GetElementText());
-        Commands.getInstance().add("_getElementOwnText", new _GetElementOwnText());
-        Commands.getInstance().add("_getElementValue", new _GetElementValue());
-        Commands.getInstance().add("_getElementAttributeValue", new _GetElementAttributeValue());
-        Commands.getInstance().add("_checkElementAttributeValue", new _CheckElementAttributeValue());
-        Commands.getInstance().add("_checkElementCssValue", new _CheckElementCssValue());
-        Commands.getInstance().add("_checkElementAttributeMatching", new _CheckElementAttributeMatching());
-        Commands.getInstance().add("_checkElementAttributeNotMatching", new _CheckElementAttributeNotMatching());
-        Commands.getInstance().add("_checkFieldEnabled", new _CheckFieldEnabled());
-        Commands.getInstance().add("_checkFieldDisabled", new _CheckFieldDisabled());
-        Commands.getInstance().add("_checkFieldReadOnly", new _CheckFieldReadOnly());
-        Commands.getInstance().add("_checkFieldAppear", new _CheckFieldAppear());
-        Commands.getInstance().add("_clickField", new _ClickField());
-        Commands.getInstance().add("_clickButton", new _ClickButton());
-        Commands.getInstance().add("_checkButtonEnabled", new _CheckButtonEnabled());
-        Commands.getInstance().add("_checkButtonDisabled", new _CheckButtonDisabled());
-        Commands.getInstance().add("_checkButtonAppear", new _CheckButtonAppear());
-        Commands.getInstance().add("_checkButtonDisappear", new _CheckButtonDisappear());
-        Commands.getInstance().add("_checkElementDisappear", new _CheckElementDisappear());
-        Commands.getInstance().add("_checkElementText", new _CheckElementText());
-        Commands.getInstance().add("_checkElementValue", new _CheckElementValue());
-        Commands.getInstance().add("_checkElementMatchText", new _CheckElementMatchText());
-        Commands.getInstance().add("_checkElementHref", new _CheckElementHref());
-        Commands.getInstance().add("_clickElementLink", new _ClickElementLink());
-        Commands.getInstance().add("_getCheckBoxValue", new _GetCheckBoxValue());
-        Commands.getInstance().add("_hoverElement", new _HoverElement());
-        Commands.getInstance().add("_uploadFile", new _UploadFile());
-        Commands.getInstance().add("_checkElementSelect", new _CheckElementSelect());
+        Commands.getInstance().add("clickElement", new ClickElement());
+        Commands.getInstance().add("setAlias", new SetAlias());
+        Commands.getInstance().add("checkElementAppear", new CheckElementAppear());
+        Commands.getInstance().add("fillField", new FillField());
+        Commands.getInstance().add("getElementText", new GetElementText());
+        Commands.getInstance().add("clickField", new ClickField());
+        Commands.getInstance().add("clickButton", new ClickButton());
+        Commands.getInstance().add("checkElementDisappear", new CheckElementDisappear());
+        Commands.getInstance().add("checkElementText", new CheckElementText());
+        Commands.getInstance().add("checkElementMatchText", new CheckElementMatchText());
     }
 
     @Step
@@ -65,12 +41,12 @@ public class BrowserManager {
     }
 
     private static void configSelenide(long timeout) {
-        Configuration.baseUrl = BASE_URL;
+        Configuration.baseUrl = "https://github.com/";
         Configuration.timeout = timeout;
-        Configuration.pageLoadTimeout = PAGE_LOAD_TIMEOUT_MILLIS;
+        Configuration.pageLoadTimeout = PAGELOADTIMEOUTMILLIS;
         Configuration.browser = CHROME;
         Configuration.browserSize = "1920x1080";
-        Configuration.downloadsFolder = DOWNLOAD_FOLDER;
+        Configuration.downloadsFolder = DOWNLOADFOLDER;
         Configuration.fileDownload = FileDownloadMode.FOLDER;
         Configuration.savePageSource = false;
         Configuration.screenshots = false;

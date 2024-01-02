@@ -32,8 +32,8 @@ public class SignInPage {
 
     @Step("Авторизация")
     public DashboardPage signIn(String login, String password) {
-        loginField._fillField(login);
-        passwordField._fillField(password).submit();
+        loginField.fillField(login);
+        passwordField.fillField(password).submit();
         return DashboardPage.init();
     }
 }

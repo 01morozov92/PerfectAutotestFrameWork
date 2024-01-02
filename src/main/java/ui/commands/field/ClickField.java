@@ -1,4 +1,4 @@
-package ui.commands.button;
+package ui.commands.field;
 
 import com.codeborne.selenide.Command;
 import com.codeborne.selenide.SelenideElement;
@@ -8,17 +8,15 @@ import ui.selectors.CustomSelenideElement;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import static ui.pages.common.CommonPageHelper.getElementAliasName;
 
-@ParametersAreNonnullByDefault
-public class _ClickButton implements Command<CustomSelenideElement> {
+public class ClickField implements Command<CustomSelenideElement> {
 
     @Override
     @Nonnull
     public CustomSelenideElement execute(SelenideElement proxy, WebElementSource locator, @Nullable Object[] args) {
-        CommonPageHelper.clickButton(proxy, getElementAliasName(proxy));
+        CommonPageHelper.clickField(proxy, getElementAliasName(proxy));
         return (CustomSelenideElement) proxy;
     }
 }

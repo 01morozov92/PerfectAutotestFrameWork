@@ -1,4 +1,4 @@
-package ui.commands.element;
+package ui.commands.field;
 
 import com.codeborne.selenide.Command;
 import com.codeborne.selenide.SelenideElement;
@@ -8,18 +8,16 @@ import ui.selectors.CustomSelenideElement;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import static java.util.Objects.requireNonNull;
 import static ui.pages.common.CommonPageHelper.getElementAliasName;
 
-@ParametersAreNonnullByDefault
-public class _CheckElementSelect implements Command<CustomSelenideElement> {
+public class FillField implements Command<CustomSelenideElement> {
 
     @Override
     @Nonnull
     public CustomSelenideElement execute(SelenideElement proxy, WebElementSource locator, @Nullable Object[] args) {
-        CommonPageHelper.checkElementSelect(proxy, getElementAliasName(proxy), (Boolean) requireNonNull(args)[0]);
+        CommonPageHelper.fillField(proxy, getElementAliasName(proxy), (String) requireNonNull(args)[0]);
         return (CustomSelenideElement) proxy;
     }
 }

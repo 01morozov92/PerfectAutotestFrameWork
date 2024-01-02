@@ -12,7 +12,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import static java.util.Objects.requireNonNull;
 
 @ParametersAreNonnullByDefault
-public class _SetAlias implements Command<CustomSelenideElement> {
+public class SetAlias implements Command<CustomSelenideElement> {
 
     @Override
     @CheckReturnValue

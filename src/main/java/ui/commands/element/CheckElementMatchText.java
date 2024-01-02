@@ -10,15 +10,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import static java.util.Objects.requireNonNull;
 import static ui.pages.common.CommonPageHelper.getElementAliasName;
 
 @ParametersAreNonnullByDefault
-public class _CheckElementDisappear implements Command<CustomSelenideElement> {
+public class CheckElementMatchText implements Command<CustomSelenideElement> {
 
     @Override
     @Nonnull
     public CustomSelenideElement execute(SelenideElement proxy, WebElementSource locator, @Nullable Object[] args) {
-        CommonPageHelper.checkElementDisappear(proxy, getElementAliasName(proxy));
+        CommonPageHelper.checkElementMatchText(proxy, getElementAliasName(proxy), (String) requireNonNull(args)[0]);
         return (CustomSelenideElement) proxy;
     }
 }

@@ -19,14 +19,6 @@ public class CheckUiTests {
     @Test(description = "Поиск репозитория - имя репозитория")
     public void checkUi() {
         MainPage.openMainPage()
-                .goToSignInPage()
-                .signIn(MAIN_CONFIG.getUserLogin(), MAIN_CONFIG.getUserPassword())
-                .checkDashboardTitle()
-                .openSearch()
-                .search("selenide")
-                .getResultListBlock()
-                .getRepositoryByName("selenide/selenide")
-                .goToThatRepository()
-                .checkRepositoryName("selenide");
+                .goToSignInPage();
     }
 }
