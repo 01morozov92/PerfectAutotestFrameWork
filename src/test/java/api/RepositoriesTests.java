@@ -39,7 +39,7 @@ public class RepositoriesTests {
         });
     }
 
-    @AfterClass
+    @AfterClass//repositoryClient.deleteRepository("usefulrepository", "new-repo")
     public void deleteTestData() {
         if (!repositoriesForDelete.isEmpty()) {
             repositoriesForDelete.forEach(repositoryClient::deleteRepository);

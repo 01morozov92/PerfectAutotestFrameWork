@@ -20,7 +20,7 @@ public class UserRepositoryClient extends AbstractGithubClient {
 
     @Step("Создание репозитория с именем: {0}")
     public GetUserRepositoryModel createRepository(String repositoryName) {
-        var response = new GetUserRepositoryModelResponse(createUserRepositorySpec()
+        var response = new GetUserRepositoryModelResponse(createUserRepositorySpec().log().all()
                 .body(CreateRepositoryRequestModel.builder()
                         .name(repositoryName)
                         .description("This is autotest repository")
