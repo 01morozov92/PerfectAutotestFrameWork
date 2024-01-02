@@ -23,7 +23,7 @@ public class SearchSuggestionsBlock {
 
     @Step("Поиск по запросу: {0}")
     public SearchResultsPage search(String query){
-        searchInput._fillField(query).pressEnter();
+        searchInput.fillField(query).pressEnter();
         return SearchResultsPage.init();
     }
 }

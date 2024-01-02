@@ -21,8 +21,7 @@ public class RepositoryPage {
 
     @Step("[Проверка] Имя репозитория - {0}")
     public RepositoryPage checkRepositoryName(String name){
-        
-        repositoryName._checkElementText(name);
+        repositoryName.checkElementText(name);
         return this;
     }
 }

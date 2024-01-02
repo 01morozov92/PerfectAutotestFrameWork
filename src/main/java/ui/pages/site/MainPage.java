@@ -28,7 +28,7 @@ public class MainPage {
 
     @Step("Переход к странице авторизации")
     public SignInPage goToSignInPage() {
-        signInElement._click();
+        signInElement.clickButton();
         return SignInPage.init();
     }
 }

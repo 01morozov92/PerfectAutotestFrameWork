@@ -192,7 +192,8 @@ public abstract class CommonPageHelper {
 
     @Step("Клик по кнопке {buttonName}")
     public static void clickButton(SelenideElement button, String buttonName) {
-        checkButtonEnabled(button, buttonName).click();
+        checkButtonEnabled(button, buttonName)
+                .click();
     }
 
     public static void clickButton(SelenideElement button) {
