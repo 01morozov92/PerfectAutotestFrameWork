@@ -25,4 +25,10 @@ public class DashboardPage {
         title.checkElementMatchText("^.*Dashboard.*$");
         return this;
     }
+
+    @Step("Открытие поиска")
+    public SearchSuggestionsBlock openSearch(){
+        searchInput.clickField();
+        return SearchSuggestionsBlock.init();
+    }
 }

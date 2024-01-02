@@ -10,6 +10,12 @@ public class CheckUiTests {
         MainPage.openMainPage()
                 .goToSignInPage()
                 .signIn("usefulrepository", "TrueLVL010492")
-                .checkDashboardTitle();
+                .checkDashboardTitle()
+                .openSearch()
+                .search("selenide")
+                .getResultListBlock()
+                .getRepositoryByName("selenide/selenide")
+                .goToThatRepository()
+                .checkRepositoryName("selenide");
     }
 }

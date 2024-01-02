@@ -4,22 +4,23 @@ import com.codeborne.selenide.*;
 import com.codeborne.selenide.commands.Commands;
 import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
-import ui.commands.SetAlias;
-import ui.commands.button.ClickButton;
+import ui.commands.*;
+import ui.commands.button.*;
+import ui.commands.checkbox.GetCheckBoxValue;
 import ui.commands.element.*;
-import ui.commands.field.ClickField;
-import ui.commands.field.FillField;
+import ui.commands.field.*;
 
 public class BrowserManager {
 
-    private static final long ELEMENTSTIMEOUTMILLIS = 5000;
-    private static final long PAGELOADTIMEOUTMILLIS = 6000;
+    private static final long ELEMENTS_TIMEOUT_MILLIS = 5000;
+    private static final long PAGE_LOAD_TIMEOUT_MILLIS = 6000;
     private static final String CHROME = Browsers.CHROME;
-    private static final String DOWNLOADFOLDER = "target/downloads";
+    private static final String DOWNLOAD_FOLDER = "target/downloads";
+    private static final String BASE_URL = config.Configuration.getMainConfig().getBaseUiUrl();
 
     static {
         setUpCommands();
-        configSelenide(ELEMENTSTIMEOUTMILLIS);
+        configSelenide(ELEMENTS_TIMEOUT_MILLIS);
     }
 
     private static void setUpCommands() {
@@ -28,11 +29,33 @@ public class BrowserManager {
         Commands.getInstance().add("checkElementAppear", new CheckElementAppear());
         Commands.getInstance().add("fillField", new FillField());
         Commands.getInstance().add("getElementText", new GetElementText());
+        Commands.getInstance().add("getElementOwnText", new GetElementOwnText());
+        Commands.getInstance().add("getElementValue", new GetElementValue());
+        Commands.getInstance().add("getElementAttributeValue", new GetElementAttributeValue());
+        Commands.getInstance().add("checkElementAttributeValue", new CheckElementAttributeValue());
+        Commands.getInstance().add("checkElementCssValue", new CheckElementCssValue());
+        Commands.getInstance().add("checkElementAttributeMatching", new CheckElementAttributeMatching());
+        Commands.getInstance().add("checkElementAttributeNotMatching", new CheckElementAttributeNotMatching());
+        Commands.getInstance().add("checkFieldEnabled", new CheckFieldEnabled());
+        Commands.getInstance().add("checkFieldDisabled", new CheckFieldDisabled());
+        Commands.getInstance().add("checkFieldReadOnly", new CheckFieldReadOnly());
+        Commands.getInstance().add("checkFieldAppear", new CheckFieldAppear());
         Commands.getInstance().add("clickField", new ClickField());
         Commands.getInstance().add("clickButton", new ClickButton());
+        Commands.getInstance().add("checkButtonEnabled", new CheckButtonEnabled());
+        Commands.getInstance().add("checkButtonDisabled", new CheckButtonDisabled());
+        Commands.getInstance().add("checkButtonAppear", new CheckButtonAppear());
+        Commands.getInstance().add("checkButtonDisappear", new CheckButtonDisappear());
         Commands.getInstance().add("checkElementDisappear", new CheckElementDisappear());
         Commands.getInstance().add("checkElementText", new CheckElementText());
+        Commands.getInstance().add("checkElementValue", new CheckElementValue());
         Commands.getInstance().add("checkElementMatchText", new CheckElementMatchText());
+        Commands.getInstance().add("checkElementHref", new CheckElementHref());
+        Commands.getInstance().add("clickElementLink", new ClickElementLink());
+        Commands.getInstance().add("getCheckBoxValue", new GetCheckBoxValue());
+        Commands.getInstance().add("hoverElement", new HoverElement());
+        Commands.getInstance().add("uploadFile", new UploadFile());
+        Commands.getInstance().add("checkElementSelect", new CheckElementSelect());
     }
 
     @Step
@@ -41,12 +64,12 @@ public class BrowserManager {
     }
 
     private static void configSelenide(long timeout) {
-        Configuration.baseUrl = "https://github.com/";
+        Configuration.baseUrl = BASE_URL;
         Configuration.timeout = timeout;
-        Configuration.pageLoadTimeout = PAGELOADTIMEOUTMILLIS;
+        Configuration.pageLoadTimeout = PAGE_LOAD_TIMEOUT_MILLIS;
         Configuration.browser = CHROME;
         Configuration.browserSize = "1920x1080";
-        Configuration.downloadsFolder = DOWNLOADFOLDER;
+        Configuration.downloadsFolder = DOWNLOAD_FOLDER;
         Configuration.fileDownload = FileDownloadMode.FOLDER;
         Configuration.savePageSource = false;
         Configuration.screenshots = false;
