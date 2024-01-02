@@ -45,6 +45,10 @@ public class CustomLocatorBuilder {
         if (isNotBlank(customLocator.classStartsWith())) {
             return buildClassStartsWith(customLocator.classStartsWith());
         }
+
+        if (isNotBlank(customLocator.dataTarget())){
+            return buildDataTarget(customLocator.dataTarget());
+        }
         if (isNotBlank(customLocator.classStartsWith()) && isNotBlank(customLocator.notContainClass())) {
             return buildClassStartsWithAndNotContainOtherClass(customLocator.classStartsWith(),
                     customLocator.notContainClass());
@@ -92,6 +96,10 @@ public class CustomLocatorBuilder {
         return By.xpath(String.format(".//*[(starts-with(@class,'%s') or contains(@class,'%s')) and text()='%s']", className, className, text));
     }
 
+    private static By buildDataTarget(String dataTarget) {
+        return By.xpath(".//*[@data-target='%s']".formatted(dataTarget));
+    }
+
     private static By buildClassStartsWithAndWithText(String className, String text) {
         //Selenide realization withText()
         var containsTextXpathExpression = "contains(normalize-space(translate(text(), '\t\n\r ', '    ')),'%s')".formatted(text);
@@ -114,6 +122,8 @@ public class CustomLocatorBuilder {
             expectedLocatorsSize = 2;
         } else if (isNotBlank(customLocator.classStartsWith())) {
             locators.add(customLocator.classStartsWith());
+        }else if (isNotBlank(customLocator.dataTarget())){
+            locators.add(customLocator.dataTarget());
         } else if (isNotBlank(customLocator.text())) {
             locators.add(customLocator.text());
         } else if (isNotBlank(customLocator.withText())) {

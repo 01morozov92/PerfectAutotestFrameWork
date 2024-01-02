@@ -15,6 +15,7 @@ import ui.pages.factory.ElementsContainer;
 
 import java.util.Objects;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ResultsListBlock extends ElementsContainer {
 
     @As("Результаты")

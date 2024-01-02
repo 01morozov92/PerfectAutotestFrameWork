@@ -13,7 +13,7 @@ public class DashboardPage {
     private CustomSelenideElement title;
 
     @As("Поиск")
-    @CustomLocator(attributeName = "data-target", attributeValue = "qbsearch-input.inputButton")
+    @CustomLocator(dataTarget = "qbsearch-input.inputButton")
     private CustomSelenideElement searchInput;
 
     public static DashboardPage init() {

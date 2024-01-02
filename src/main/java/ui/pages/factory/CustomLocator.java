@@ -27,4 +27,6 @@ public @interface CustomLocator {
     String notContainClass() default "";
 
     String tag() default "";
+
+    String dataTarget() default "";
 }
