@@ -23,11 +23,11 @@ public class RepositoriesTests {
         var repositoryName = "new-repo";
 
         ReportStep.preconditionStep("Создание репозитория", () -> {
-            userRepositoryClient.createRepository(repositoryName);
             repositoriesForDelete.put("usefulrepository", "new-repo");
+            userRepositoryClient.createRepository(repositoryName);
         });
 
-        var listOfRepositoryNames = userRepositoryClient.getRepositories("usefulrepository").getJson()
+        var listOfRepositoryNames = userRepositoryClient.getRepositories("usefulrepository").getListJson()
                 .stream()
                 .map(GetUserRepositoryModel::getName)
                 .toList();
@@ -42,10 +42,7 @@ public class RepositoriesTests {
     @AfterClass
     public void deleteTestData() {
         if (!repositoriesForDelete.isEmpty()) {
-            repositoriesForDelete.forEach((key, value) ->
-                    repositoryClient.deleteRepository(key, value)
-                            .checkResponseStatusCode(201,
-                                    "Произошла ошибка при удалении репозитория с именем: %s".formatted(key)));
+            repositoriesForDelete.forEach(repositoryClient::deleteRepository);
         }
     }
 }

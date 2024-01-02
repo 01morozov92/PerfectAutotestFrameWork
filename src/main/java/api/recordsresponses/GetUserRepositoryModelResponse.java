@@ -10,8 +10,12 @@ import java.util.List;
 public record GetUserRepositoryModelResponse(Response response) implements ValidatableRecordResponse {
 
     @Step
-    public List<GetUserRepositoryModel> getJson() {
-        checkResponseStatusCode200("Ошибка при получении списка репозиториев");
+    public GetUserRepositoryModel getJson() {
+        return response.as(GetUserRepositoryModel.class);
+    }
+
+    @Step
+    public List<GetUserRepositoryModel> getListJson() {
         return response.jsonPath().getList("", GetUserRepositoryModel.class);
     }
 }

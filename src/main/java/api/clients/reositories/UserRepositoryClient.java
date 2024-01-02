@@ -2,6 +2,7 @@ package api.clients.reositories;
 
 import api.clients.AbstractGithubClient;
 import api.models.repositories.createuserrepository.CreateRepositoryRequestModel;
+import api.models.repositories.getuserrepository.response.GetUserRepositoryModel;
 import api.recordsresponses.GetUserRepositoryModelResponse;
 import io.qameta.allure.Step;
 import io.restassured.specification.RequestSpecification;
@@ -18,8 +19,8 @@ public class UserRepositoryClient extends AbstractGithubClient {
     }
 
     @Step("Создание репозитория с именем: {0}")
-    public GetUserRepositoryModelResponse createRepository(String repositoryName) {
-        return new GetUserRepositoryModelResponse(createUserRepositorySpec()
+    public GetUserRepositoryModel createRepository(String repositoryName) {
+        var response = new GetUserRepositoryModelResponse(createUserRepositorySpec()
                 .body(CreateRepositoryRequestModel.builder()
                         .name(repositoryName)
                         .description("This is autotest repository")
@@ -28,6 +29,9 @@ public class UserRepositoryClient extends AbstractGithubClient {
                         .isTemplate(true)
                         .build())
                 .post("/repos"));
+
+        response.checkResponseStatusCode(201, "Произошла ошибка при создании репозитория");
+        return response.getJson();
     }
 
     protected RequestSpecification createUsersRepositorySpec() {

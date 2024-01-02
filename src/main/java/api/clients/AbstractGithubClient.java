@@ -13,7 +13,7 @@ public abstract class AbstractGithubClient extends DefaultRestAssuredClient{
         return RestAssured.given()
                 .when()
                 .header("Accept", "application/vnd.github+json")
-                .header("Authorization", makeBearerAuthorizationHeader(MAIN_CONFIG.getUserToken()))
+                .header(makeBearerAuthorizationHeader(MAIN_CONFIG.getUserToken()))
                 .header("X-GitHub-Api-Version", "2022-11-28")
                 .baseUri(MAIN_CONFIG.getBaseApiUri());
     }
