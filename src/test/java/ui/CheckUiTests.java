@@ -11,5 +11,6 @@ public class CheckUiTests {
                 .goToSignInPage()
                 .signIn("usefulrepository", "TrueLVL010492")
                 .checkDashboardTitle();
+
     }
 }
