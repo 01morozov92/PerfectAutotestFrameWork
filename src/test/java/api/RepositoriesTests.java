@@ -4,17 +4,10 @@ import api.clients.reositories.RepositoryClient;
 import api.clients.reositories.UserRepositoryClient;
 import api.models.repositories.getuserrepository.response.GetUserRepositoryModel;
 import org.assertj.core.api.Assertions;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import reporting.ReportStep;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RepositoriesTests {
-
-    private final Map<String, String> repositoriesForDelete = new HashMap<>();
-    private final RepositoryClient repositoryClient = new RepositoryClient();
 
     @Test(description = "Успешное создание репозитория через ручку /repos")
     public void getRepositoriesTest() {
@@ -23,8 +16,8 @@ public class RepositoriesTests {
         var repositoryName = "new-repo";
 
         ReportStep.preconditionStep("Создание репозитория", () -> {
-            repositoriesForDelete.put("usefulrepository", "new-repo");
-            userRepositoryClient.createRepository(repositoryName);
+            userRepositoryClient.createRepository(repositoryName)
+                    .markForDelete();
         });
 
         var listOfRepositoryNames = userRepositoryClient.getRepositories("usefulrepository").getListJson()
@@ -37,12 +30,5 @@ public class RepositoriesTests {
                     .as("Не найдено ни одного репозитория с именем: %s, у пользователя с именем: %s".formatted(repositoryName, userName))
                     .contains(repositoryName);
         });
-    }
-
-    @AfterClass//repositoryClient.deleteRepository("usefulrepository", "new-repo")
-    public void deleteTestData() {
-        if (!repositoriesForDelete.isEmpty()) {
-            repositoriesForDelete.forEach(repositoryClient::deleteRepository);
-        }
     }
 }
